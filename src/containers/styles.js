@@ -1,10 +1,12 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet,Platform} from 'react-native';
 import {SCREEN_WIDTH,SCREEN_HEIGHT} from '../constants/dimensions';
-import * as font from '../constants/fontFamily';
+import * as fontFamily from '../constants/fontFamily';
+import * as color from '../constants/colors';
 
 export const styles=StyleSheet.create({
   container:{
-    flex:1
+    flex:1,
+    backgroundColor:'white'
   },
   loginBg:{
     width:SCREEN_WIDTH,
@@ -12,11 +14,10 @@ export const styles=StyleSheet.create({
   },
   centerAlignText:{
     alignSelf:'center',
-    position:'absolute',
-    top:SCREEN_HEIGHT/5,
+    marginTop:SCREEN_HEIGHT/5,
     fontSize:22,
-    fontFamily:font.ARGENTCF_REGULAR,
-    color:'white'
+    fontFamily:fontFamily.ARGENTCF_REGULAR,
+    color:'black'
   },
   absoluteContainer:{
     backgroundColor:'transparent',
@@ -28,5 +29,134 @@ export const styles=StyleSheet.create({
     position:'absolute',
     bottom:SCREEN_HEIGHT/25,
     alignSelf:'center'
+  },
+  blackContainer:{
+    flex:1,
+    backgroundColor:'black'
+  },
+  leftAlignText:{
+    marginHorizontal:SCREEN_HEIGHT/33.3,
+    fontSize:16,
+    fontFamily:fontFamily.ARGENTCF_BOLD,
+    marginTop:30,
+    color:'white'
+  },
+  lightText:{
+    marginHorizontal:SCREEN_HEIGHT/33.3,
+    marginTop:SCREEN_HEIGHT/3+SCREEN_HEIGHT/16.6,
+    color:'white',
+    fontFamily:fontFamily.ARGENTCF_REGULAR,
+    fontSize:16
+  },
+  boldText:{
+    marginHorizontal:SCREEN_HEIGHT/33.3,
+    marginTop:SCREEN_HEIGHT/100,
+    color:'white',
+    fontFamily:fontFamily.ARGENTCF_BOLD,
+    fontSize:26
+  },
+  locationIcon:{
+    marginTop:SCREEN_HEIGHT/50,
+    marginLeft:SCREEN_HEIGHT/33.3
+  },
+  rowContainer:{
+    flexDirection:'row'
+  },
+  rowText:{
+    marginLeft:8,
+    marginTop:Platform.OS=="ios"?SCREEN_HEIGHT/62.5:SCREEN_HEIGHT/50,
+    color:'white',
+    fontFamily:fontFamily.ARGENTCF_REGULAR,
+    fontSize:16
+  },
+  boldTitle:{
+    marginHorizontal:SCREEN_HEIGHT/33.3,
+    marginTop:SCREEN_HEIGHT/20,
+    color:'white',
+    fontFamily:fontFamily.ARGENTCF_BOLD,
+    fontSize:16
+  },
+  premiumIcon:{
+    alignSelf:'center',
+    width:30,
+    height:30,
+    marginTop:SCREEN_HEIGHT/16.6
+  },
+  premiumServicesContainer:{
+    width:SCREEN_WIDTH/3
+  },
+  premiumServicesTitle:{
+    marginTop:SCREEN_HEIGHT/166.6,
+    textAlign:'center',
+    fontSize:10,
+    marginHorizontal:SCREEN_HEIGHT/33.3,
+    fontFamily:fontFamily.ARGENTCF_REGULAR,
+    color:"white"
+  },
+  horzSeperator:{
+    marginHorizontal:SCREEN_HEIGHT/33.3,
+    marginTop:1,
+    height:1,
+    backgroundColor:color.GRAY,
+    marginTop:30
+  },
+  events:{
+    marginLeft:SCREEN_HEIGHT/33.3,
+    width:140,
+    height:140,
+    borderRadius:8,
+    marginTop:SCREEN_HEIGHT/25
+  },
+  scrollviewContainer:{
+    paddingBottom:SCREEN_HEIGHT/33.3
+  },
+  eventsText:{
+    marginLeft:SCREEN_HEIGHT/33.3,
+    width:140,
+    marginTop:10,
+    color:'white',
+    fontSize:14,
+    fontFamily:fontFamily.ARGENTCF_BOLD
+  },
+  eventsTime:{
+    marginLeft:SCREEN_HEIGHT/33.3,
+    width:110,
+    marginTop:3,
+    color:'#494949',
+    fontSize:14,
+    fontFamily:fontFamily.ARGENTCF_REGULAR
+  },
+  btnText:{
+    color:'white',
+  },
+  buttonStyle:{
+    alignItems:'flex-end'
+  },
+  musicIcon:{
+    height:40,
+    width:40,
+    marginTop:30,
+    marginLeft:SCREEN_HEIGHT/33.3
+  },
+  btnText:{
+    color:'black',
+    fontSize:16,
+    fontFamily:fontFamily.ARGENTCF_BOLD,
+    alignSelf:'center'
+  },
+  rightAlignBtn:{
+    alignSelf:'flex-end',
+    marginLeft:'auto',
+    marginRight:SCREEN_HEIGHT/50,
+    height:44,
+    borderRadius:22,
+    justifyContent:'center',
+    backgroundColor:'white',
+    paddingLeft:15,
+    paddingRight:15,
+  },
+  spinner:{
+    color: '#FFF',
+    marginTop:-60
   }
 })

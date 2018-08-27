@@ -1,9 +1,10 @@
 import React,{Component} from 'react'
-import {Alert} from 'react-native'
+import {Alert,AsyncStorage} from 'react-native'
 import {connect} from 'react-redux';
 
 import Login from './login';
 import * as actions from '../../actions/authActions'
+import {IS_LOGGED_IN} from '../../constants/asyncStorageKeys'
 
 class LoginContainer extends Component{
   constructor(props){
@@ -14,6 +15,13 @@ class LoginContainer extends Component{
       email:'',
       password:''
     }
+  }
+  componentWillMount(){
+    AsyncStorage.getItem(IS_LOGGED_IN).then((value) => {
+      if(value){
+          this.props.navigation.navigate('home')
+      }
+    })
   }
 
   onChangeText(inputName,input){
@@ -29,6 +37,7 @@ class LoginContainer extends Component{
   loginAction(){
     this.loadingButton.showLoading(true);
     this.props.login(this.state.email,this.state.password).then(() => {
+
       if(this.props.error){
 
         Alert.alert(
@@ -38,6 +47,10 @@ class LoginContainer extends Component{
               this.loadingButton.showLoading(false)
             }]
           )
+      }
+      else{
+        AsyncStorage.setItem(IS_LOGGED_IN,"1")
+        this.props.navigation.navigate('home')
       }
     })
   }

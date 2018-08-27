@@ -3,7 +3,7 @@ import {BASE_URL} from '../api/url';
 
 export function isLoading(bool){
   return{
-    type:types.LOGIN_ATTEMPT,
+    type:types.IS_LOADING,
     isLoading:bool
   }
 }

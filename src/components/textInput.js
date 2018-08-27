@@ -8,12 +8,12 @@ import * as fontFamily from '../constants/fontFamily';
 
 export default class TextInput extends Component{
   render(){
-    const {placeholder,value,onChangeText,marginTop,secureTextEntry,autoCapitalize} = this.props;
+    const {placeholder,value,onChangeText,marginTop,secureTextEntry,keyboardType} = this.props;
     const {containerStyle,labelTextStyle} = styles
     return(
-      <TextField containerStyle={[containerStyle,{marginTop:marginTop?marginTop:SCREEN_HEIGHT/50}]} label={placeholder}
-        value={value} onChangeText={onChangeText} tintColor='white' textColor='white' baseColor='white' labelTextStyle={labelTextStyle}
-        titleTextStyle={labelTextStyle} secureTextEntry={secureTextEntry?secureTextEntry:false} autoCapitalize={'none'}/>
+      <TextField containerStyle={[containerStyle,{marginTop:marginTop}]} label={placeholder}
+        value={value} onChangeText={onChangeText} tintColor='black' textColor='black' baseColor='gray' labelTextStyle={labelTextStyle}
+        titleTextStyle={labelTextStyle} secureTextEntry={secureTextEntry} autoCapitalize={'none'} keyboardType={keyboardType}/>
     )
   }
 }
@@ -21,7 +21,15 @@ export default class TextInput extends Component{
 TextInput.propTypes={
   placeholder:PropTypes.string.isRequired,
   value:PropTypes.string.isRequired,
-  onChangeText:PropTypes.func
+  onChangeText:PropTypes.func,
+  marginTop:PropTypes.number,
+  secureTextEntry:PropTypes.bool
+}
+
+TextInput.defaultPropTypes={
+  keyboardType:'defsault',
+  marginTop:SCREEN_HEIGHT/50,
+  secureTextEntry:false
 }
 
 const styles=StyleSheet.create({

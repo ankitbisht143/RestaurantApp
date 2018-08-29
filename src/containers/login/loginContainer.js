@@ -12,14 +12,14 @@ class LoginContainer extends Component{
     this.loginAction=this.loginAction.bind(this);
 
     this.state={
-      email:'',
-      password:''
+      email:'test@woobly.com',
+      password:'pass1234'
     }
   }
   componentWillMount(){
     AsyncStorage.getItem(IS_LOGGED_IN).then((value) => {
       if(value){
-          this.props.navigation.navigate('home')
+        this.props.navigation.navigate('home')
       }
     })
   }
@@ -36,29 +36,28 @@ class LoginContainer extends Component{
 
   loginAction(){
     this.loadingButton.showLoading(true);
-    this.props.login(this.state.email,this.state.password).then(() => {
-
-      if(this.props.error){
-
-        Alert.alert(
-            '',
-            'Invalid credentials.',
-            [{text:'OK',onPress: () =>
-              this.loadingButton.showLoading(false)
-            }]
-          )
-      }
-      else{
-        AsyncStorage.setItem(IS_LOGGED_IN,"1")
-        this.props.navigation.navigate('home')
-      }
-    })
+    this.props.login(this.state.email,this.state.password)
   }
 
+  componentWillReceiveProps(nextProps){
+    if(nextProps.userData.user){
+      AsyncStorage.setItem(IS_LOGGED_IN,"1")
+      this.props.navigation.navigate('home')
+    }
+    if(nextProps.error){
+      Alert.alert(
+          '',
+          'Invalid credentials.',
+          [{text:'OK',onPress: () =>
+            this.loadingButton.showLoading(false)
+          }]
+        )
+    }
+  }
   render(){
     return(
       <Login email={this.state.email} password={this.state.password} onChangeText={(inputName,input) => this.onChangeText(inputName,input)}
-        loginAction={this.loginAction} onRef={ref => (this.loadingButton = ref)}/>
+        loginAction={this.loginAction} loading={this.props.isLoading} onRef={ref => (this.loadingButton = ref)}/>
     )
   }
 }

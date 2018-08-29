@@ -8,7 +8,6 @@ const INITIAL_STATE={
 }
 
 export default function auth(state=INITIAL_STATE,action){
-
   switch (action.type){
     case types.IS_LOADING:
       return{
@@ -18,8 +17,6 @@ export default function auth(state=INITIAL_STATE,action){
       }
       break;
     case types.LOGIN_SUCCESS:
-    console.warn("1st");
-
       return{
         ...state,
         isLoading:false,

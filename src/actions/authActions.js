@@ -23,35 +23,8 @@ export function loginFailed(error){
 }
 
 export function login(userData){
-  return dispatch => {
-    dispatch(isLoading(true));
-    return fetch(`${BASE_URL}/auth/login`,{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify({
-        "email":userData.email,
-        "password":userData.password
-      })
-    })
-    .then((response) => {
-      if(response.status < 300){
-        dispatch(isLoading(false));
-        response.json().then((responseJSON) => {
-          dispatch(loginSuccess(responseJSON))
-        })
-      }
-      else{
-        dispatch(isLoading(false));
-        response.json().then((responseJSON) => {
-          dispatch(loginFailed(responseJSON.message))
-        })
-      }
-    })
-    .catch((error) => {
-      dispatch(isLoading(false))
-      dispatch(loginFailed(error))
-    })
+  return {
+    type:types.LOGIN_ATTEMPT,
+    userData
   }
 }

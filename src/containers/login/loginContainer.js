@@ -17,8 +17,10 @@ class LoginContainer extends Component{
     }
   }
   componentWillMount(){
+
     AsyncStorage.getItem(IS_LOGGED_IN).then((value) => {
       if(value){
+
         this.props.navigation.navigate('home')
       }
     })
@@ -41,17 +43,20 @@ class LoginContainer extends Component{
 
   componentWillReceiveProps(nextProps){
     if(nextProps.userData.user){
+
       AsyncStorage.setItem(IS_LOGGED_IN,"1")
       this.props.navigation.navigate('home')
     }
     if(nextProps.error){
-      Alert.alert(
-          '',
-          'Invalid credentials.',
-          [{text:'OK',onPress: () =>
-            this.loadingButton.showLoading(false)
-          }]
-        )
+      setTimeout(() => {
+        Alert.alert(
+            '',
+            'Invalid credentials.',
+            [{text:'OK',onPress: () =>
+              this.loadingButton.showLoading(false)
+            }]
+          )
+      }, 1)
     }
   }
   render(){

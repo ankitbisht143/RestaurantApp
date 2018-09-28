@@ -29,7 +29,10 @@ class HomeContainer extends Component{
   }
 
   componentWillReceiveProps(nextProps){
+
     if(nextProps.events.data){
+      console.warn(nextProps.isLoading);
+
       this.setState({
         events:nextProps.events.data.story,
         restaurantType:nextProps.events.data.type,

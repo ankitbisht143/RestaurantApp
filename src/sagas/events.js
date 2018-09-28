@@ -5,6 +5,7 @@ import {getEvents} from './api/events'
 
 function* fetchEvents(){
   try {
+    yield put({type:types.IS_LOADING})
     const receivedEvents=yield getEvents()
     yield put({type:types.SHOW_EVENTS,events:receivedEvents})
   } catch (e) {

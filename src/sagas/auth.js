@@ -5,8 +5,8 @@ import {doLogin} from './api/auth';
 
 function* handleLogin(payload){
   try{
+    yield put({type:types.IS_LOADING})
     const loginResponse=yield doLogin(payload)
-    
     if(loginResponse.user){
         yield put({type:types.LOGIN_SUCCESS,userData:loginResponse})
     }
@@ -18,5 +18,6 @@ function* handleLogin(payload){
   }
 }
 export function* watchLoginAttempt(){
+
   yield takeLatest(types.LOGIN_ATTEMPT,handleLogin)
 }
